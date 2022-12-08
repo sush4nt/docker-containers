@@ -11,8 +11,10 @@ A simple framework for basic Data Science applications
 4.  Change the directory to the dedicated folder
 5.  Verify if the command `docker` is working on Powershell window
 6.  Build the Docker Container using the following command:
+
             docker build -t image_name path/to/Dockerfile/folder
 7.  Build the container using the image built:
+
            docker run -it `
            -v ${PWD}:/workspace/ `
            -p 8888:8888 -p 6006:6006 `
