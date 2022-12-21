@@ -46,3 +46,20 @@ A simple framework for basic Data Science applications
 3. https://tmuxguide.readthedocs.io/en/latest/tmux/tmux.html
 4. https://linuxize.com/post/getting-started-with-tmux/
 5. https://www.hostinger.in/tutorials/tmux-beginners-guide-and-cheat-sheet/
+
+### Additional References
+
+1. To add jupyter notebook extensions:
+
+   a. `pip install jupyter_contrib_nbextensions`
+  
+   b. `jupyter contrib nbextension install --user`
+2. Useful packages:
+
+            nb_black
+            mlxtend
+            xgboost
+            lightgbm
+            missingno
+3. For installing PySpark:
+            [refer this article](https://medium.com/@patilvijay23/installing-and-using-pyspark-on-linux-machine-e9f8dddc0c9a)
