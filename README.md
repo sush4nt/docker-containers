@@ -1,25 +1,36 @@
 # DSML
-A simple framework for basic Data Science applications 
+A simple skeleton framework for basic Data Science applications 
+
+## Why the need Docker Images?
+Docker Official Images are a curated set of Docker open source and drop-in solution repositories. These images have clear documentation, promote best practices, and are designed for the most common use cases.
 
 ## Guide
 
 
 ### Steps:
 1.  Create a dedicated folder for installation
-2.  Install Docker Desktop for Windows
-3.  Open Powershell; run as Administrator
+2.  Install Docker Desktop for Windows/Linux
+3.  Open Powershell; run as Administrator/ Open Terminal
 4.  Change the directory to the dedicated folder
-5.  Verify if the command `docker` is working on Powershell window
+5.  Verify if the command `docker` is working on Powershell/Terminal window
 6.  Build the Docker Container using the following command:
 
             docker build -t image_name path/to/Dockerfile/folder
-7.  Build the container using the image built:
+7.1  Build the container using the image built(Windows users):
 
-           docker run -it `
-           -v ${PWD}:/workspace/ `
-           -p 8888:8888 -p 6006:6006 `
-           --name container_name image_name `
-           /bin/bash
+            docker run -it `
+            -v ${PWD}:/workspace/ `
+            -p 8888:8888 -p 6006:6006 `
+            --name container_name image_name `
+            /bin/bash
+7.2  Build the container using the image built(Linux users):
+
+             docker run -it \
+             -v $(pwd):/workspace/ \
+             --net=host \
+             --name <container_name> \
+             <image_name> \
+             /bin/bash
 8.  Start the container:
             docker start container_name
 9.  Attach to the container:
@@ -46,6 +57,8 @@ A simple framework for basic Data Science applications
 3. https://tmuxguide.readthedocs.io/en/latest/tmux/tmux.html
 4. https://linuxize.com/post/getting-started-with-tmux/
 5. https://www.hostinger.in/tutorials/tmux-beginners-guide-and-cheat-sheet/
+6. https://docs.docker.com/desktop/install/ubuntu/
+7. https://docs.docker.com/engine/install/ubuntu/#set-up-the-repository
 
 ### Additional References
 
