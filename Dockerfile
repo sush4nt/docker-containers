@@ -33,6 +33,7 @@ COPY requirements.txt /tmp
 RUN pip install pip==22.3.1
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
+CMD gunicorn -b 0.0.0.0:8050 app.app:server
 # install future_custom_functions framework
 # COPY . /custom_functions
 # WORKDIR /custom_functions
