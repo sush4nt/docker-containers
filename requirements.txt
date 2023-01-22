@@ -63,6 +63,7 @@ jupyter==1.0.0
 jupyter-client==7.1.0
 jupyter-console==6.4.0
 jupyter-core==4.9.1
+Jupyterlab>=3.2.0
 jupyterlab-pygments==0.1.2
 jupyterlab-widgets==1.0.2
 kiwisolver==1.3.2
@@ -87,7 +88,7 @@ nbformat==5.1.3
 nest-asyncio==1.5.4
 networkx==2.6.3
 nltk==3.6.6
-notebook==6.4.6
+notebook>=6.3.0
 numba==0.54.1
 numexpr==2.8.0
 numpy==1.19.5
@@ -104,7 +105,7 @@ phik==0.12.0
 pickleshare==0.7.5
 pillow==9.0.0
 plac==1.1.3
-plotly==5.4.0
+plotly>=4.1.1
 pluggy==1.0.0
 preshed==3.0.6
 prometheus-client==0.12.0
@@ -140,7 +141,7 @@ requests-oauthlib==1.3.0
 responses==0.16.0
 rsa==4.8
 s3transfer==0.5.0
-scikit-learn==0.23.2
+scikit-learn>=0.17.1
 scikit-plot==0.3.7
 scipy==1.5.4
 seaborn==0.11.2
@@ -190,6 +191,6 @@ zipp==3.6.0
 nb-black==1.0.7
 openpyxl==3.0.9
 tensorflow==2.7.0
-dash==2.7.1
-jupyter-dash==0.4.2
+dash>=1.9.0
 gunicorn==20.1.0
+evidently<=0.2.0

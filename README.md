@@ -74,4 +74,10 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
             missingno
 2. For installing PySpark:
             [refer this article](https://medium.com/@patilvijay23/installing-and-using-pyspark-on-linux-machine-e9f8dddc0c9a)
+<<<<<<< HEAD
+4. If you are facing issues running this on MacOS; add another tag to [docker build](https://stackoverflow.com/questions/70293560/tensorflow-pip-install-mac-docker-python3):
+            
+            --platform linux/x86_64
+=======
 3. To copy contents on tmux pandes, refer to [issue](https://unix.stackexchange.com/questions/332419/tmux-mouse-mode-on-does-not-allow-to-select-text-with-mouse?noredirect=1&lq=1)
+>>>>>>> c35336a5889f70277d2f5a0bb2a449f96cfdb957
