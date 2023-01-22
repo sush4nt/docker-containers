@@ -20,7 +20,7 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
 
             docker run -it `
             -v ${PWD}:/workspace/ `
-            -p 8888:8888 -p 6006:6006 `
+            -p 8888:8888 -p 8050:8050 `
             --name container_name image_name `
             /bin/bash
 7.2  Build the container using the image built(Linux users):
@@ -48,6 +48,9 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
 7.  Delete all containers: `docker rm -f $(docker ps -a -q)`
 8.  Reattach to the tmux workspace: `tmux a` or `tmux attach`
 9.  Exit a container: `exit`
+10. To check docker disk usage: `docker system df`
+11. To remove all docker build cache, containers and images: `docker system prune -all`
+12. To remove docker build cache: `docker builder prune`
 
 
 ### References:
@@ -62,17 +65,13 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
 
 ### Additional References
 
-1. To add jupyter notebook extensions:
-
-   a. `pip install jupyter_contrib_nbextensions`
-  
-   b. `jupyter contrib nbextension install --user`
-2. Useful packages:
+1. Useful packages:
 
             nb_black
             mlxtend
             xgboost
             lightgbm
             missingno
-3. For installing PySpark:
+2. For installing PySpark:
             [refer this article](https://medium.com/@patilvijay23/installing-and-using-pyspark-on-linux-machine-e9f8dddc0c9a)
+3. To copy contents on tmux pandes, refer to [issue](https://unix.stackexchange.com/questions/332419/tmux-mouse-mode-on-does-not-allow-to-select-text-with-mouse?noredirect=1&lq=1)
