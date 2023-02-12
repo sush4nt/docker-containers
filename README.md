@@ -81,5 +81,6 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
 
 4. To copy contents on tmux pandes, refer to [issue](https://unix.stackexchange.com/questions/332419/tmux-mouse-mode-on-does-not-allow-to-select-text-with-mouse)
 5. To use plotly dash, make the following changes in jupyter cell: 
+            
             app.run_server(host='0.0.0.0', port=8050, debug=True)
 
