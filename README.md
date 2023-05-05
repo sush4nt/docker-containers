@@ -21,6 +21,7 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
             docker run -it `
             -v ${PWD}:/workspace/ `
             -p 8888:8888 -p 8050:8050 `
+            -p {portOfChoice}:{portOfChoice} `
             --name container_name image_name `
             /bin/bash
 7.2  Build the container using the image built(Linux users):
@@ -79,7 +80,7 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
             
             --platform linux/x86_64
 
-4. To copy contents on tmux pandes, refer to [issue](https://unix.stackexchange.com/questions/332419/tmux-mouse-mode-on-does-not-allow-to-select-text-with-mouse)
+4. To copy contents on tmux panes, refer to [issue](https://unix.stackexchange.com/questions/332419/tmux-mouse-mode-on-does-not-allow-to-select-text-with-mouse)
 5. To use plotly dash, make the following changes in jupyter cell: 
             
             app.run_server(host='0.0.0.0', port=8050, debug=True)
