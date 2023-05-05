@@ -46,6 +46,11 @@ COPY requirements.txt /tmp
 RUN pip install pip==23.0
 RUN pip install -r /tmp/requirements.txt
 
+# exposing the port and configuring plotly-dash
+# ENV DASH_DEBUG_MODE False
+# EXPOSE 8050
+# CMD ["gunicorn", "-b", "0.0.0.0:8050", "--reload", "app:server"]
+
 ## jupyter notebook extensions setup
 RUN pip install jupyter_contrib_nbextensions
 RUN jupyter contrib nbextension install --user
