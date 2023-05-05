@@ -16,10 +16,9 @@ tmux send-keys "htop" C-m
 
 # select pane 1 and open jupyter-notebook in it
 tmux selectp -t 1
-tmux send-keys "jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token='' 
---NotebookApp.password=''" C-m
+tmux send-keys "sudo jupyter notebook --ip 0.0.0.0 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''" C-m
 
 # return to pane 0 and attach session
 tmux selectp -t 0
-tmux send-keys '/usr/games/cowsay -f milk Hello! Welcome to DSML container!' C-m
+tmux send-keys '/usr/games/cowsay -f milk Hello! Welcome to DSML Docker Container!' C-m
 tmux attach-session -t $session
