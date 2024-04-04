@@ -1,5 +1,9 @@
-# DSML
-A simple skeleton framework for basic Data Science applications 
+# docker-containers
+This repository contains references to 3 docker images for basic Data Science applications 
+
+1. General (Basic analysis, ML applications, Jupyter)
+2. PyTorch 
+3. PySpark
 
 ## Why the need Docker Images?
 Docker Official Images are a curated set of Docker open source and drop-in solution repositories. These images have clear documentation, promote best practices, and are designed for the most common use cases.
@@ -37,6 +41,7 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
 9.  Attach to the container:
             docker attach container_name
 10. Use the alias `work` to start the tmux sessions
+11. If there are any errors after putting the command `work`, use `sudo apt-get install dos2unix` -> apply the conversions to tmux and workspace setup config files -> `dos2unix {filename}` 
 
 
 ### Additional commands:
@@ -67,21 +72,10 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
 9. https://stackoverflow.com/questions/61890687/dash-app-refusing-to-start-127-0-0-1-refused-to-connect
 
 ### Additional References
-
-1. Useful packages:
-
-            nb_black
-            mlxtend
-            xgboost
-            lightgbm
-            missingno
-2. For installing PySpark: [refer this article](https://patilvijay23.medium.com/installing-and-using-pyspark-on-linux-machine-e9f8dddc0c9a)
-3. If you are facing issues running this on MacOS; add another tag to [docker build](https://stackoverflow.com/questions/70293560/tensorflow-pip-install-mac-docker-python3):
+            
+1. For installing PySpark: [refer this article](https://patilvijay23.medium.com/installing-and-using-pyspark-on-linux-machine-e9f8dddc0c9a)
+2. If you are facing issues running this on MacOS; add another tag to [docker build](https://stackoverflow.com/questions/70293560/tensorflow-pip-install-mac-docker-python3):
             
             --platform linux/x86_64
 
-4. To copy contents on tmux panes, refer to [issue](https://unix.stackexchange.com/questions/332419/tmux-mouse-mode-on-does-not-allow-to-select-text-with-mouse)
-5. To use plotly dash, make the following changes in jupyter cell: 
-            
-            app.run_server(host='0.0.0.0', port=8050, debug=True)
-
+3. To copy contents on tmux panes, refer to [issue](https://unix.stackexchange.com/questions/332419/tmux-mouse-mode-on-does-not-allow-to-select-text-with-mouse)

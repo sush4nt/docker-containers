@@ -18,12 +18,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     # sudo=1.9.5p2-3 \
     zip=3.0-12 \
     unzip=6.0-26+deb11u1 \
-    openssh-client \ 
+    openssh-client=1:8.4p1-5+deb11u1 \
     wget=1.21-1+deb11u1 \
     xclip=0.13-2 \
     tree=1.8.0-1+b1 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
-# =1:8.4p1-5+deb11u1
+
 # create a user and map it with system host, to avoid permission issues
 RUN addgroup --gid 1000 devuser
 RUN adduser --disabled-password --gecos "" --uid 1000 --gid 1000 devuser
@@ -53,13 +53,13 @@ RUN pip install -r /tmp/requirements.txt
 
 ## jupyter notebook extensions setup
 RUN pip install jupyter_contrib_nbextensions
-# RUN jupyter contrib nbextension install --user
-# RUN jupyter contrib nbextension install
-# RUN jupyter nbextension enable codefolding/main
-# RUN jupyter nbextension enable collapsible_headings/main
-# RUN jupyter nbextension enable execute_time/ExecuteTime
-# RUN jupyter nbextension enable livemdpreview/livemdpreview
-# RUN jupyter nbextension enable scratchpad/main
+RUN jupyter contrib nbextension install --user
+RUN jupyter contrib nbextension install
+RUN jupyter nbextension enable codefolding/main
+RUN jupyter nbextension enable collapsible_headings/main
+RUN jupyter nbextension enable execute_time/ExecuteTime
+RUN jupyter nbextension enable livemdpreview/livemdpreview
+RUN jupyter nbextension enable scratchpad/main
 
 # clear matplotlib cache to avoid font not found warnings
 RUN rm ~/.cache/matplotlib -fr
