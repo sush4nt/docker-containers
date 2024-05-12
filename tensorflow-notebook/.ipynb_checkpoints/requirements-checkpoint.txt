@@ -1,0 +1,9 @@
+numpy
+pandas
+tqdm
+pyarrow
+papermill
+sklearn
+scipy
+opencv-python
+openai

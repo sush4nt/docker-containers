@@ -42,9 +42,12 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
             docker attach container_name
 10. Use the alias `work` to start the tmux sessions
 11. If there are any errors after putting the command `work`, use `sudo apt-get install dos2unix` -> apply the conversions to tmux and workspace setup config files -> `dos2unix {filename}` 
+12. If you building on top popular images such as tensorflow/pytorch + jupyter notebook, these additional tags during `docker run` might be helpful:
 
+            1. -e GRANT_SUDO=yes --user=root
+            2. --gpus all
 
-### Additional commands:
+### Additional docker commands:
 1.  List downloaded images: `docker image ls`
 2.  Check currently running or previously run containers: `docker ps -a`
 3.  Start a container: `docker start container_name`
@@ -79,3 +82,4 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
             --platform linux/x86_64
 
 3. To copy contents on tmux panes, refer to [issue](https://unix.stackexchange.com/questions/332419/tmux-mouse-mode-on-does-not-allow-to-select-text-with-mouse)
+4. Add PySpark kernel to jupyter [link](https://github.com/jupyter-incubator/sparkmagic/tree/master?tab=readme-ov-file)
