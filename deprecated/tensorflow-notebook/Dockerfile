@@ -1,5 +1,6 @@
 # Using the Jupyter TensorFlow notebook as the base image
-FROM jupyter/tensorflow-notebook
+# FROM jupyter/tensorflow-notebook
+FROM tensorflow/tensorflow:latest-gpu
 
 USER root
 
@@ -18,6 +19,7 @@ RUN id jovyan &>/dev/null || (addgroup --gid 1000 jovyan && \
     adduser --disabled-password --gecos "" --uid 1000 --gid 1000 jovyan && \
     adduser jovyan sudo && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers)
+ENV HOME /home/jovyan
 
 # Optional: switch to user 'jovyan' if required for better security practices
 # USER jovyan
@@ -43,17 +45,3 @@ RUN rm -fr /home/jovyan/.cache/matplotlib
 # Final setting up of user and workspace
 USER jovyan
 WORKDIR /workspace/
-
-# Optionally expose ports and set command for applications like Plotly Dash if needed in your application
-# ENV DASH_DEBUG_MODE False
-# EXPOSE 8050
-# CMD ["gunicorn", "-b", "0.0.0.0:8050", "--reload", "app:server"]
-
-# Jupyter notebook extensions setup
-# RUN pip install jupyter_contrib_nbextensions && \
-#     jupyter contrib nbextension install --user && \
-#     jupyter nbextension enable codefolding/main && \
-#     jupyter nbextension enable collapsible_headings/main && \
-#     jupyter nbextension enable execute_time/ExecuteTime && \
-#     jupyter nbextension enable livemdpreview/livemdpreview && \
-#     jupyter nbextension enable scratchpad/main
