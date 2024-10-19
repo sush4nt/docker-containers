@@ -12,3 +12,12 @@ keras
 tensorflow-addons
 tensorflow-datasets
 tensorboard
+openai
+langchain
+langchain-community
+pypdf
+yt_dlp
+pydub
+git+https://github.com/openai/whisper.git
+chromadb
+scikit-learn
