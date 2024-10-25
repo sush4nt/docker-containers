@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     wget=1.21-1+deb11u1 \
     xclip=0.13-2 \
     tree=1.8.0-1+b1 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    dos2unix
 
 # create a user and map it with system host, to avoid permission issues
 RUN addgroup --gid 1000 devuser
@@ -33,6 +34,7 @@ ENV HOME /home/devuser
 
 # tmux based workspace setup
 COPY ./scripts/. /home/devuser/
+RUN dos2unix /home/devuser/.tmux.conf /home/devuser/.workspace_setup.sh
 RUN echo 'alias work="bash /home/devuser/.workspace_setup.sh"' >> ~/.bashrc
 RUN echo 'PATH="/home/devuser/.local/bin:$PATH"' >> ~/.bashrc
 ENV PATH="/home/devuser/.local/bin:$PATH"
