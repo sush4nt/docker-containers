@@ -35,9 +35,6 @@ ENV PIP_NO_CACHE_DIR=1
 # Set bash as the default shell
 ENV SHELL=/bin/bash
 
-# # Create a working directory
-# WORKDIR /app/
-
 # alias python='python3'
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
@@ -50,10 +47,6 @@ RUN pip install \
 COPY requirements.txt /tmp
 RUN pip install -r /tmp/requirements.txt
 RUN pip install --upgrade notebook 
-# or use pip3 install --upgrade notebook in the terminal
-# # start jupyter lab
-# CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
-# EXPOSE 8888
 
 USER devuser
 WORKDIR /workspace/
