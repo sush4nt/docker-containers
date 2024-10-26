@@ -2,7 +2,7 @@
 This repository contains references to 3 docker images for basic Data Science applications 
 
 1. General (Basic analysis, ML applications, Jupyter)
-2. PyTorch 
+2. Deep (Supports deep learning frameworks)
 3. PySpark
 
 ## Why the need Docker Images?
@@ -23,7 +23,7 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
 7.1  Build the container using the image built(Windows users):
 
             docker run -it `
-            -v ${PWD}:/workspace/ `
+            -v ${PWD}:/workspace/ --gpus all `
             -p 8888:8888 -p 8050:8050 `
             -p {portOfChoice}:{portOfChoice} `
             --name container_name image_name `
@@ -31,7 +31,7 @@ Docker Official Images are a curated set of Docker open source and drop-in solut
 7.2  Build the container using the image built(Linux users):
 
              docker run -it \
-             -v $(pwd):/workspace/ \
+             -v $(pwd):/workspace/ --gpus all \
              --net=host \
              --name <container_name> \
              <image_name> \

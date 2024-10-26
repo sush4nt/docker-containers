@@ -11,9 +11,11 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     apt-utils \
     vim \
+    zip \
     git \
     htop \
-    tmux
+    tmux \
+    dos2unix  
 
 # create a user and map it with system host, to avoid permission issues
 RUN addgroup --gid 1000 devuser
@@ -24,6 +26,7 @@ ENV HOME /home/devuser
 
 # tmux based workspace setup
 COPY ./scripts/. /home/devuser/
+RUN dos2unix /home/devuser/.tmux.conf /home/devuser/.workspace_setup.sh
 RUN echo 'alias work="bash /home/devuser/.workspace_setup.sh"' >> ~/.bashrc
 RUN echo 'PATH="/home/devuser/.local/bin:$PATH"' >> ~/.bashrc
 ENV PATH="/home/devuser/.local/bin:$PATH"
@@ -41,10 +44,13 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 # build with some basic python packages
 RUN pip install \
     numpy \
-    torch \
     notebook \ 
     jupyterlab
 
+COPY requirements.txt /tmp
+RUN pip install -r /tmp/requirements.txt
+RUN pip install --upgrade notebook 
+# or use pip3 install --upgrade notebook in the terminal
 # # start jupyter lab
 # CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"]
 # EXPOSE 8888

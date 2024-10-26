@@ -1,0 +1,15 @@
+Cygnus
+numpy
+pandas
+jupyterlab
+matplotlib
+seaborn
+Pillow
+scipy
+setuptools
+pyhocon
+tensorboard
+tqdm
+papermill
+opencv-python
+openai
