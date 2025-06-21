@@ -1,24 +1,32 @@
 name: workflow
+
 on:
   push:
     branches:
       - main
     paths-ignore:
       - 'README.md'
+
 permissions:
   id-token: write
   contents: read
+
 jobs:
   integration:
     name: Continuous Integration
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Lint code
-        run: echo "Linting repository"
-      - name: Build Dockerfile in general/
+
+      - name: Build Docker Image
         run: |
-          docker build -t general-image ./general
-      - name: Run unit tests
-        run: echo "Running unit tests"
+          docker build -t general-image .
+
+      - name: Smoke-test dependencies in container
+        run: |
+          docker run --rm general-image python - << 'EOF'
+          import pandas, numpy, scikit_learn, xgboost, flask
+          print("✅ All imports succeeded")
+          EOF
