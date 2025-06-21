@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t general-image .
+          docker build -t general-image ./general
 
       - name: Smoke-test dependencies in container
         run: |
