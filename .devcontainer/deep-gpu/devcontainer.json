@@ -1,0 +1,8 @@
+{
+  "name": "dsw-deep-gpu",
+  "dockerComposeFile": ["../../compose.yaml"],
+  "service": "deep-gpu",
+  "runServices": ["deep-gpu"],
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "none"
+}

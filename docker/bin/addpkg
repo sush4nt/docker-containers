@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Install into an env without activating it. Takes any `uv pip install` arguments.
+# Usage: addpkg <env> pandas "torch>=2.3" | -r requirements.txt | -e /workspace/mylib | git+https://...
+set -euo pipefail
+
+name="${1:?usage: addpkg <env> <packages | -r file | -e path>...}"
+shift
+[[ -f "/envs/$name/pyvenv.cfg" ]] || { echo "no such env: $name (run lsenv)" >&2; exit 1; }
+exec uv pip install --python "/envs/$name" "$@"

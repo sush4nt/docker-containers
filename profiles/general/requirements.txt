@@ -1,0 +1,15 @@
+pandas
+numpy
+scipy
+scikit-learn
+xgboost
+lightgbm
+matplotlib
+seaborn
+plotly
+tqdm
+pyarrow
+ipywidgets
+papermill
+mlflow
+streamlit

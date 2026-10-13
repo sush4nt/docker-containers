@@ -1,0 +1,8 @@
+{
+  "name": "dsw-general",
+  "dockerComposeFile": ["../../compose.yaml"],
+  "service": "general",
+  "runServices": ["general"],
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "none"
+}

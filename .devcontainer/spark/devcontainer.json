@@ -1,0 +1,8 @@
+{
+  "name": "dsw-spark",
+  "dockerComposeFile": ["../../compose.yaml"],
+  "service": "spark",
+  "runServices": ["spark"],
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "none"
+}

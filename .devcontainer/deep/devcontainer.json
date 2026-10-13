@@ -1,0 +1,8 @@
+{
+  "name": "dsw-deep",
+  "dockerComposeFile": ["../../compose.yaml"],
+  "service": "deep",
+  "runServices": ["deep"],
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "none"
+}

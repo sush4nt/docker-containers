@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# List envs with their Python version and whether a Jupyter kernel is registered.
+shopt -s nullglob
+
+printf '%-24s %-10s %s\n' ENV PYTHON KERNEL
+for d in /envs/*/; do
+    [[ -f "$d/pyvenv.cfg" ]] || continue
+    n="$(basename "$d")"
+    v="$(sed -n 's/^version_info = //p' "$d/pyvenv.cfg")"
+    k=no; [[ -d "/envs/.jupyter/kernels/$n" ]] && k=yes
+    printf '%-24s %-10s %s\n' "$n" "$v" "$k"
+done
