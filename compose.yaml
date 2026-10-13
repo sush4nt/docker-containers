@@ -1,0 +1,72 @@
+name: dsw
+
+# Shared by every service: same image skeleton, same mounts, same env volume.
+x-common: &common
+  build: &build
+    context: .
+    dockerfile: docker/Dockerfile
+    args:
+      USER_UID: ${USER_UID:-1000}
+      USER_GID: ${USER_GID:-1000}
+  image: dsw:base
+  init: true
+  env_file:
+    - path: .env
+      required: false
+  volumes:
+    - ${WORKSPACE_DIR:-..}:/workspace
+    - ./profiles:/opt/profiles:ro
+    - envs:/envs
+
+services:
+  general:
+    <<: *common
+    container_name: dsw-general
+    hostname: general
+    environment:
+      DEFAULT_ENV: general
+    ports:
+      - 127.0.0.1:${GENERAL_PORT:-8888}:8888
+
+  deep: &deep
+    <<: *common
+    container_name: dsw-deep
+    hostname: deep
+    environment:
+      DEFAULT_ENV: deep
+    ports:
+      - 127.0.0.1:${DEEP_PORT:-8889}:8888
+    shm_size: 2gb # PyTorch DataLoader workers outgrow the 64 MB default
+
+  # Same as deep + NVIDIA GPU (Linux / Windows WSL2 with NVIDIA driver only).
+  deep-gpu:
+    <<: *deep
+    container_name: dsw-deep-gpu
+    hostname: deep-gpu
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  spark:
+    <<: *common
+    build:
+      <<: *build
+      args:
+        USER_UID: ${USER_UID:-1000}
+        USER_GID: ${USER_GID:-1000}
+        EXTRA_APT: openjdk-17-jre-headless
+    image: dsw:spark
+    container_name: dsw-spark
+    hostname: spark
+    environment:
+      DEFAULT_ENV: spark
+    ports:
+      - 127.0.0.1:${SPARK_PORT:-8890}:8888
+      - 127.0.0.1:${SPARK_UI_PORT:-4040}:4040
+
+volumes:
+  envs:

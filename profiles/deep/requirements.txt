@@ -1,0 +1,14 @@
+# PyPI torch wheels bundle CUDA on Linux x86_64 (GPU-ready) and are CPU-only on arm64/macOS.
+torch
+torchvision
+transformers
+datasets
+accelerate
+peft
+evaluate
+tensorboard
+scikit-learn
+pandas
+matplotlib
+tqdm
+ipywidgets

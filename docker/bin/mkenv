@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# Create or update /envs/<name> and register it as a Jupyter kernel. Safe to re-run.
+# Usage: mkenv <name> [python=3.12] [requirements.txt | project dir with pyproject.toml]
+# Without a 3rd arg, uses ./pyproject.toml or ./requirements.txt if present.
+set -euo pipefail
+
+name="${1:?usage: mkenv <name> [python] [requirements.txt | project dir]}"
+py="${2:-3.12}"
+src="${3:-}"
+[[ "$name" =~ ^[a-z0-9][a-z0-9._-]*$ ]] || { echo "env name must match [a-z0-9._-]" >&2; exit 1; }
+env="/envs/$name"
+
+if [[ -z "$src" ]]; then
+    if [[ -f pyproject.toml ]]; then src=.; elif [[ -f requirements.txt ]]; then src=requirements.txt; fi
+fi
+if [[ -d "$src" && ! -f "$src/pyproject.toml" && -f "$src/requirements.txt" ]]; then
+    src="$src/requirements.txt"
+fi
+
+echo "→ env $env (python $py)"
+uv venv "$env" --python "$py" --seed --allow-existing --prompt "$name"
+
+if [[ -n "$src" && -d "$src" ]]; then
+    echo "→ uv sync --project $src"
+    UV_PROJECT_ENVIRONMENT="$env" uv sync --project "$src" --python "$py" --inexact
+elif [[ -n "$src" && -f "$src" ]]; then
+    echo "→ uv pip install -r $src"
+    uv pip install --python "$env" -r "$src"
+elif [[ -n "$src" ]]; then
+    echo "no such file or directory: $src" >&2; exit 1
+fi
+
+uv pip install --python "$env" --quiet ipykernel
+ver="$("$env/bin/python" -c 'import sys; print("%d.%d" % sys.version_info[:2])')"
+"$env/bin/python" -m ipykernel install --user --name "$name" --display-name "$name (py$ver)" >/dev/null
+
+echo "✓ $name ready | kernel: $name (py$ver) | activate: actenv $name"

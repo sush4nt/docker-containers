@@ -5,28 +5,34 @@ on:
     branches:
       - main
     paths-ignore:
-      - 'README.md'
+      - '**.md'
+  pull_request:
 
 permissions:
-  id-token: write
   contents: read
 
 jobs:
   integration:
-    name: Continuous Integration
+    name: Build and smoke-test
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Build Docker Image
-        run: |
-          docker build -t general-image ./general
+      - name: Build images
+        run: docker compose build general spark
 
-      - name: Smoke-test dependencies in container
+      - name: General profile
         run: |
-          docker run --rm general-image python - << 'EOF'
-          import pandas, numpy, scikit_learn, xgboost, flask
-          print("✅ All imports succeeded")
-          EOF
+          docker compose run --rm -T general \
+            /envs/general/bin/python -c "import pandas, sklearn, xgboost, mlflow; print('general ok')"
+
+      - name: Spark profile
+        run: |
+          docker compose run --rm -T spark \
+            /envs/spark/bin/python -c "from pyspark.sql import SparkSession; print('spark ok', SparkSession.builder.master('local[1]').getOrCreate().range(5).count())"
+
+      - name: Helper scripts
+        run: |
+          docker compose run --rm -T general bash -c "cd /tmp && mkenv ci 3.11 && addpkg ci requests && lsenv && rmenv ci"

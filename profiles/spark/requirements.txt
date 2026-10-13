@@ -1,0 +1,9 @@
+# pyspark ships Spark itself; the spark image adds Java 17.
+pyspark
+pandas
+pyarrow
+numpy
+matplotlib
+tqdm
+ipywidgets
+papermill
